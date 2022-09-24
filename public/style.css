@@ -37,7 +37,9 @@ body {
     margin: 100px 0px;
 
 }
-
+Button {
+    cursor: pointer;
+}
 .Letras {
     display: grid;
     grid-template-columns: repeat(13,76px);
