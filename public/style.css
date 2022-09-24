@@ -1,7 +1,11 @@
 body {
     box-sizing: border-box;
 }
-
+.root{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .Forca img {
     height: 400px;
     width: 400px;
@@ -10,6 +14,7 @@ body {
     flex-direction: column;
     display: flex;
     align-items: center;
+    max-width: 1000px;
 }
 .Forca button {
     height: 40px;
@@ -29,33 +34,25 @@ body {
     height: 400px;
     display: flex;
     justify-content: space-between;
-    margin: 100px;
+    margin: 100px 0px;
 
 }
 
-.Letras1 {
+.Letras {
+    display: grid;
+    grid-template-columns: repeat(13,76px);
     width: 100%;
-    max-width: 1000px;
-    margin: 0px 100px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-
-.Letras2 {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0px 100px;
-    display: flex;
-    justify-content: space-between;
+    width: 1000px;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
-.Letra {
-    height: 50px;
+.Letra{
+    margin-bottom: 10px;
+    width: 60px;
+    height: 60px;
 }
-
 .disabled{
     background-color: #9FAAB5;
     color: #79818A;
@@ -66,4 +63,23 @@ body {
     height: 60px;
     border-radius: 10px;
     border: 0;
+}
+
+.chute{
+    width: 100%;
+    height: 100px;
+}
+
+.chute form{
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.chute label{
+    font-size: 25px;
+}
+.chute input{
+    height: 25px;
+    width: 750px;
 }
