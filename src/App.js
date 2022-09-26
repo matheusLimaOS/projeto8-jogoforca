@@ -4,36 +4,39 @@ import Chute from "./Chute";
 import palavras from "./palavras"
 
 export default function App() {
-    let imagem = `./assets/forca${0}.png`
+    let [estado,setEstado] = useState(0);
+    let imagem = `./assets/forca${estado}.png`
     let alfabeto1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M','N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    let [disabled,SetDisabled] = useState(true);
+    let [disabled,setDisabled] = useState(true);
     let [palavra,setPalavra] = useState("");
     let [ArrayTela,setArrayTela] = useState();
-    //let array = [...palavra];
-    
     return (
         <div className="App">
             <div className='Forca'>
                 <img src={imagem} alt="Forca" />
                 <div className="Direita">
-                    <button onClick={() => handleOnClick(setArrayTela,setPalavra,SetDisabled)} disabled={!disabled} className="escolher"> Escolher Palavra </button>
+                    <button onClick={() => handleOnClick(setArrayTela,setPalavra,setDisabled)} disabled={!disabled} className="escolher"> Escolher Palavra </button>
                     <h1 className="palavra">{ArrayTela}</h1>
                 </div>
             </div>
             <div className="Letras">
                 {
                     alfabeto1.map((letra,indice) => {
-                        return <Letras disabled={disabled} key={indice} letra={letra} />
+                        return <Letras disabled={disabled} reinicia= {reinicia} estado={estado} setEstado={setEstado} ArrayTela={ArrayTela} setArrayTela={setArrayTela} palavra={palavra} key={indice} letra={letra} />
                     })
                 }
             </div>
-            <Chute palavra={palavra} disabled={disabled}/> 
+            <Chute palavra={palavra} setEstado={setEstado} disabled={disabled}/> 
         </div>
     )
 }
 
-function handleOnClick(setArrayTela,setPalavra,SetDisabled){
-    SetDisabled(false);
+function reinicia(setDisabled){
+    setDisabled(true);
+}
+
+function handleOnClick(setArrayTela,setPalavra,setDisabled){
+    setDisabled(false);
     arrayNaTela(setArrayTela,randomizaPalavra(),setPalavra);
 }
 

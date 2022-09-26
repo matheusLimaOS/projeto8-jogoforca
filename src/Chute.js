@@ -4,7 +4,7 @@ export default function Chute(props) {
    let [palpite,setPalpite] = useState("");
     return (
         <div className="chute">
-            <form onSubmit={(e)=>{chute(e,palpite,props.palavra,setPalpite)}}>
+            <form onSubmit={(e)=>{chute(e,palpite,props.palavra,setPalpite,props.setEstado)}}>
                 <label htmlFor="input"> Já sei a resposta</label>
                 <input type="text" value={palpite} onChange={(e)=>handleChange(setPalpite,e.target.value)} className="input" />
                 <button type="submit">Chutar</button>
@@ -13,7 +13,7 @@ export default function Chute(props) {
     )
 }
 
-function chute(event,palpite,palavra,setPalpite){
+function chute(event,palpite,palavra,setPalpite,setEstado){
     event.preventDefault();
 
     let palp = removeAcento(palpite)
@@ -24,6 +24,7 @@ function chute(event,palpite,palavra,setPalpite){
         setPalpite('');
     }
     else{
+        setEstado(6);
         alert("Errou")
         setPalpite('');
     }
