@@ -10,34 +10,38 @@ export default function App() {
     let [disabled,setDisabled] = useState(true);
     let [palavra,setPalavra] = useState("");
     let [ArrayTela,setArrayTela] = useState();
+    let [iniciou,setIniciou] = useState(false);
+    let [finalizado,setFinalizado] = useState(false);
+    let [acertou,setAcertou] = useState(false);
+
+    console.log(palavra);
+
     return (
         <div className="App">
             <div className='Forca'>
                 <img src={imagem} alt="Forca" />
                 <div className="Direita">
-                    <button onClick={() => handleOnClick(setArrayTela,setPalavra,setDisabled)} disabled={!disabled} className="escolher"> Escolher Palavra </button>
-                    <h1 className="palavra">{ArrayTela}</h1>
+                    <button onClick={() => handleOnClick(setEstado,setArrayTela,setPalavra,setDisabled,setIniciou,setFinalizado)} className="escolher"> Escolher Palavra </button>
+                    <h1 className={(finalizado)  ? ((acertou) ? "palavra verde" : "palavra vermelho") : "palavra"}>{ArrayTela}</h1>
                 </div>
             </div>
             <div className="Letras">
                 {
                     alfabeto1.map((letra,indice) => {
-                        return <Letras disabled={disabled} reinicia= {reinicia} estado={estado} setEstado={setEstado} ArrayTela={ArrayTela} setArrayTela={setArrayTela} palavra={palavra} key={indice} letra={letra} />
+                        return <Letras disabled={disabled} setDisabled={setDisabled} iniciou={iniciou} setIniciou={setIniciou} estado={estado} setEstado={setEstado} ArrayTela={ArrayTela} setArrayTela={setArrayTela} palavra={palavra} key={indice} letra={letra} setFinalizado={setFinalizado} setAcertou={setAcertou} />
                     })
                 }
             </div>
-            <Chute palavra={palavra} setEstado={setEstado} disabled={disabled}/> 
+            <Chute palavra={palavra} setArrayTela={setArrayTela} setAcertou={setAcertou} setFinalizado={setFinalizado} setDisabled={setDisabled} setEstado={setEstado} disabled={disabled}/> 
         </div>
     )
 }
-
-function reinicia(setDisabled){
-    setDisabled(true);
-}
-
-function handleOnClick(setArrayTela,setPalavra,setDisabled){
+function handleOnClick(setEstado,setArrayTela,setPalavra,setDisabled,setIniciou,setFinalizado){
+    setIniciou(true);
+    setEstado(0);
     setDisabled(false);
     arrayNaTela(setArrayTela,randomizaPalavra(),setPalavra);
+    setFinalizado(false);
 }
 
 function randomizaPalavra(){

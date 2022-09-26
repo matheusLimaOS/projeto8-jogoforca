@@ -101,4 +101,11 @@ Button {
 .palavra{
     font-size: 70px;
     letter-spacing: 15px;
+    color: black;
+}
+.vermelho{
+    color: red;
+}
+.verde{
+    color: green;
 }
